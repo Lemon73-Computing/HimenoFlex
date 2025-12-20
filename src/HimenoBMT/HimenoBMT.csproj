@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <Authors>RIKEN, Lemon73</Authors>
+		<Copyright>LGPL ver2.0 or later</Copyright>
+		<Description>The Himeno Benchmark for .NET</Description>
+		<PackageReadmeFile>../../../README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="runtimes/**" Pack="true" PackagePath="runtimes/" />
+  </ItemGroup>
+
+</Project>

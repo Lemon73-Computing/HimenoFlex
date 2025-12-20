@@ -44,4 +44,10 @@ This application has been created using [.NET MAUI](https://dot.net/maui).
 
 ## License
 
+### HimenoBMT / HimenoBMT.NET
+
 Licensed under the [LGPL ver2.0 or later](LICENSE.txt).
+
+### HimenoFlex
+
+Licensed under the [MIT License](LICENSE-MIT.txt).

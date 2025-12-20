@@ -37,7 +37,7 @@
 ********************************************************************/
 
 #include <stdio.h>
-// #include "header.h"
+#include "header.h"
 
 #ifdef SSMALL
 #define MIMAX            33
@@ -69,7 +69,7 @@
 #define MKMAX            1025
 #endif
 
-double second();
+// double second();
 float jacobi();
 void initmt();
 double fflop(int,int,int);
@@ -86,64 +86,64 @@ static float  wrk1[MIMAX][MJMAX][MKMAX],
 static int imax, jmax, kmax;
 static float omega;
 
-int
-main()
-{
-  int    i,j,k,nn;
-  float  gosa;
-  double cpu,cpu0,cpu1,flop,target;
+// int
+// main()
+// {
+//   int    i,j,k,nn;
+//   float  gosa;
+//   double cpu,cpu0,cpu1,flop,target;
 
-  target= 60.0;
-  omega= 0.8;
-  imax = MIMAX-1;
-  jmax = MJMAX-1;
-  kmax = MKMAX-1;
+//   target= 60.0;
+//   omega= 0.8;
+//   imax = MIMAX-1;
+//   jmax = MJMAX-1;
+//   kmax = MKMAX-1;
 
-  /*
-   *    Initializing matrixes
-   */
-  initmt();
-  printf("mimax = %d mjmax = %d mkmax = %d\n",MIMAX, MJMAX, MKMAX);
-  printf("imax = %d jmax = %d kmax =%d\n",imax,jmax,kmax);
+//   /*
+//    *    Initializing matrixes
+//    */
+//   initmt();
+//   printf("mimax = %d mjmax = %d mkmax = %d\n",MIMAX, MJMAX, MKMAX);
+//   printf("imax = %d jmax = %d kmax =%d\n",imax,jmax,kmax);
 
-  nn= 3;
-  printf(" Start rehearsal measurement process.\n");
-  printf(" Measure the performance in %d times.\n\n",nn);
+//   nn= 3;
+//   printf(" Start rehearsal measurement process.\n");
+//   printf(" Measure the performance in %d times.\n\n",nn);
 
-  cpu0= second();
-  gosa= jacobi(nn);
-  cpu1= second();
-  cpu= cpu1 - cpu0;
+//   cpu0= second();
+//   gosa= jacobi(nn);
+//   cpu1= second();
+//   cpu= cpu1 - cpu0;
 
-  flop= fflop(imax,jmax,kmax);
+//   flop= fflop(imax,jmax,kmax);
   
-  printf(" MFLOPS: %f time(s): %f %e\n\n",
-         mflops(nn,cpu,flop),cpu,gosa);
+//   printf(" MFLOPS: %f time(s): %f %e\n\n",
+//          mflops(nn,cpu,flop),cpu,gosa);
 
-  nn= (int)(target/(cpu/3.0));
+//   nn= (int)(target/(cpu/3.0));
 
-  printf(" Now, start the actual measurement process.\n");
-  printf(" The loop will be excuted in %d times\n",nn);
-  printf(" This will take about one minute.\n");
-  printf(" Wait for a while\n\n");
+//   printf(" Now, start the actual measurement process.\n");
+//   printf(" The loop will be excuted in %d times\n",nn);
+//   printf(" This will take about one minute.\n");
+//   printf(" Wait for a while\n\n");
 
-  /*
-   *    Start measuring
-   */
-  cpu0 = second();
-  gosa = jacobi(nn);
-  cpu1 = second();
+//   /*
+//    *    Start measuring
+//    */
+//   cpu0 = second();
+//   gosa = jacobi(nn);
+//   cpu1 = second();
 
-  cpu= cpu1 - cpu0;
+//   cpu= cpu1 - cpu0;
   
-  printf(" Loop executed for %d times\n",nn);
-  printf(" Gosa : %e \n",gosa);
-  printf(" MFLOPS measured : %f\tcpu : %f\n",mflops(nn,cpu,flop),cpu);
-  printf(" Score based on Pentium III 600MHz : %f\n",
-         mflops(nn,cpu,flop)/82,84);
+//   printf(" Loop executed for %d times\n",nn);
+//   printf(" Gosa : %e \n",gosa);
+//   printf(" MFLOPS measured : %f\tcpu : %f\n",mflops(nn,cpu,flop),cpu);
+//   printf(" Score based on Pentium III 600MHz : %f\n",
+//          mflops(nn,cpu,flop)/82,84);
   
-  return (0);
-}
+//   return (0);
+// }
 
 void
 initmt()
@@ -243,27 +243,27 @@ mflops(int nn,double cpu,double flop)
   return(flop/cpu*1.e-6*(double)nn);
 }
 
-double
-second()
-{
-#include <sys/time.h>
+// double
+// second()
+// {
+// #include <sys/time.h>
 
-  struct timeval tm;
-  double t ;
+//   struct timeval tm;
+//   double t ;
 
-  static int base_sec = 0,base_usec = 0;
+//   static int base_sec = 0,base_usec = 0;
 
-  gettimeofday(&tm, NULL);
+//   gettimeofday(&tm, NULL);
   
-  if(base_sec == 0 && base_usec == 0)
-    {
-      base_sec = tm.tv_sec;
-      base_usec = tm.tv_usec;
-      t = 0.0;
-  } else {
-    t = (double) (tm.tv_sec-base_sec) + 
-      ((double) (tm.tv_usec-base_usec))/1.0e6 ;
-  }
+//   if(base_sec == 0 && base_usec == 0)
+//     {
+//       base_sec = tm.tv_sec;
+//       base_usec = tm.tv_usec;
+//       t = 0.0;
+//   } else {
+//     t = (double) (tm.tv_sec-base_sec) + 
+//       ((double) (tm.tv_usec-base_usec))/1.0e6 ;
+//   }
 
-  return t ;
-}
+//   return t ;
+// }

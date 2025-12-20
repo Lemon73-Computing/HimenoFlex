@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HimenoFlex", "HimenoFlex\HimenoFlex.csproj", "{0E402904-F531-450F-8DA4-A0C7F9FBA998}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HimenoBMT", "HimenoBMT\HimenoBMT.csproj", "{36DCB04F-3259-46BC-8F6C-F40BA7367E34}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0E402904-F531-450F-8DA4-A0C7F9FBA998}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E402904-F531-450F-8DA4-A0C7F9FBA998}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E402904-F531-450F-8DA4-A0C7F9FBA998}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36DCB04F-3259-46BC-8F6C-F40BA7367E34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36DCB04F-3259-46BC-8F6C-F40BA7367E34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36DCB04F-3259-46BC-8F6C-F40BA7367E34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36DCB04F-3259-46BC-8F6C-F40BA7367E34}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
