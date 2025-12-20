@@ -84,7 +84,7 @@ static float  wrk1[MIMAX][MJMAX][MKMAX],
               wrk2[MIMAX][MJMAX][MKMAX];
 
 static int imax, jmax, kmax;
-static float omega;
+static float omega = 0.8;
 
 // int
 // main()
