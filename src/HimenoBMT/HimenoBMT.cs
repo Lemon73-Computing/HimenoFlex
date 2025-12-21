@@ -6,7 +6,7 @@ namespace HimenoBMT;
 public static class HimenoBMT
 {
     // DLLImport (START)
-    private const string NATIVE_LIBRARY_32 = "himenoBMT_32";
+    private const string NATIVE_LIBRARY_32 = "himenoBMT_SSMALL";
 
     [DllImport(NATIVE_LIBRARY_32, CallingConvention = CallingConvention.Cdecl)]
     public static extern void InitMT_32();
@@ -20,7 +20,7 @@ public static class HimenoBMT
     [DllImport(NATIVE_LIBRARY_32, CallingConvention = CallingConvention.Cdecl)]
     public static extern double Mflops_32(int nn, double cpu, double flop);
     // ---
-    private const string NATIVE_LIBRARY_64 = "himenoBMT_64";
+    private const string NATIVE_LIBRARY_64 = "himenoBMT_SMALL";
 
     [DllImport(NATIVE_LIBRARY_64, CallingConvention = CallingConvention.Cdecl)]
     public static extern void InitMT_64();
@@ -34,7 +34,7 @@ public static class HimenoBMT
     [DllImport(NATIVE_LIBRARY_64, CallingConvention = CallingConvention.Cdecl)]
     public static extern double Mflops_64(int nn, double cpu, double flop);
     // ---
-    private const string NATIVE_LIBRARY_128 = "himenoBMT_128";
+    private const string NATIVE_LIBRARY_128 = "himenoBMT_MIDDLE";
 
     [DllImport(NATIVE_LIBRARY_128, CallingConvention = CallingConvention.Cdecl)]
     public static extern void InitMT_128();
@@ -48,7 +48,7 @@ public static class HimenoBMT
     [DllImport(NATIVE_LIBRARY_128, CallingConvention = CallingConvention.Cdecl)]
     public static extern double Mflops_128(int nn, double cpu, double flop);
     // ---
-    private const string NATIVE_LIBRARY_256 = "himenoBMT_256";
+    private const string NATIVE_LIBRARY_256 = "himenoBMT_LARGE";
 
     [DllImport(NATIVE_LIBRARY_256, CallingConvention = CallingConvention.Cdecl)]
     public static extern void InitMT_256();
@@ -62,7 +62,7 @@ public static class HimenoBMT
     [DllImport(NATIVE_LIBRARY_256, CallingConvention = CallingConvention.Cdecl)]
     public static extern double Mflops_256(int nn, double cpu, double flop);
     // ---
-    private const string NATIVE_LIBRARY_512 = "himenoBMT_512";
+    private const string NATIVE_LIBRARY_512 = "himenoBMT_ELARGE";
 
     [DllImport(NATIVE_LIBRARY_512, CallingConvention = CallingConvention.Cdecl)]
     public static extern void InitMT_512();
