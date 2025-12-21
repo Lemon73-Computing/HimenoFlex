@@ -65,10 +65,15 @@ public partial class MainPage : ContentPage
 			cpu.Text = benchmarkResult[0];
 			pentium.Text = benchmarkResult[0];
 		}
-		catch
+		catch (Exception ex)
 		{
-			ram.Text = "DLL Error";
-		}
+			ram.Text = $"DLL Error: {ex}";
+            mflops1.Text = "";
+            loop.Text = "";
+            gosa.Text = "";
+            cpu.Text = "";
+            pentium.Text = "";
+        }
 		finally
 		{
 			//初期状態に戻す

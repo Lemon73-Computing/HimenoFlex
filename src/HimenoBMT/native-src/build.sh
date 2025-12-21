@@ -8,7 +8,7 @@ for s in SSMALL SMALL MIDDLE LARGE ELARGE; do
   # gcc -shared -D$s -fPIC himenoBMTxps.c -o himenoBMT_$s.so
 
   # Windows
-  x86_64-w64-mingw32-gcc -shared -D$s himenoBMTxps.c -o himenoBMT_$s.dll
+  x86_64-w64-mingw32-gcc -shared -O3 -D$s himenoBMTxps.c -o himenoBMT_$s.dll
   mv himenoBMT_$s.dll ../runtimes/win-x64/native/
 
   # macOS

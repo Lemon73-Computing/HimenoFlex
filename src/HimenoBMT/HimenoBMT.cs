@@ -8,72 +8,72 @@ public static class HimenoBMT
     // DLLImport (START)
     private const string NATIVE_LIBRARY_32 = "himenoBMT_SSMALL";
 
-    [DllImport(NATIVE_LIBRARY_32, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport(NATIVE_LIBRARY_32, CallingConvention = CallingConvention.Cdecl, EntryPoint = "initmt")]
     public static extern void InitMT_32();
 
-    [DllImport(NATIVE_LIBRARY_32, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport(NATIVE_LIBRARY_32, CallingConvention = CallingConvention.Cdecl, EntryPoint = "jacobi")]
     public static extern float Jacobi_32(int nn);
 
-    [DllImport(NATIVE_LIBRARY_32, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport(NATIVE_LIBRARY_32, CallingConvention = CallingConvention.Cdecl, EntryPoint = "fflop")]
     public static extern double Fflop_32(int mx, int my, int mz);
 
-    [DllImport(NATIVE_LIBRARY_32, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport(NATIVE_LIBRARY_32, CallingConvention = CallingConvention.Cdecl, EntryPoint = "mflops")]
     public static extern double Mflops_32(int nn, double cpu, double flop);
     // ---
     private const string NATIVE_LIBRARY_64 = "himenoBMT_SMALL";
 
-    [DllImport(NATIVE_LIBRARY_64, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport(NATIVE_LIBRARY_64, CallingConvention = CallingConvention.Cdecl, EntryPoint = "initmt")]
     public static extern void InitMT_64();
 
-    [DllImport(NATIVE_LIBRARY_64, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport(NATIVE_LIBRARY_64, CallingConvention = CallingConvention.Cdecl, EntryPoint = "jacobi")]
     public static extern float Jacobi_64(int nn);
 
-    [DllImport(NATIVE_LIBRARY_64, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport(NATIVE_LIBRARY_64, CallingConvention = CallingConvention.Cdecl, EntryPoint = "fflop")]
     public static extern double Fflop_64(int mx, int my, int mz);
 
-    [DllImport(NATIVE_LIBRARY_64, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport(NATIVE_LIBRARY_64, CallingConvention = CallingConvention.Cdecl, EntryPoint = "mflops")]
     public static extern double Mflops_64(int nn, double cpu, double flop);
     // ---
     private const string NATIVE_LIBRARY_128 = "himenoBMT_MIDDLE";
 
-    [DllImport(NATIVE_LIBRARY_128, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport(NATIVE_LIBRARY_128, CallingConvention = CallingConvention.Cdecl, EntryPoint = "initmt")]
     public static extern void InitMT_128();
 
-    [DllImport(NATIVE_LIBRARY_128, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport(NATIVE_LIBRARY_128, CallingConvention = CallingConvention.Cdecl, EntryPoint = "jacobi")]
     public static extern float Jacobi_128(int nn);
 
-    [DllImport(NATIVE_LIBRARY_128, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport(NATIVE_LIBRARY_128, CallingConvention = CallingConvention.Cdecl, EntryPoint = "fflop")]
     public static extern double Fflop_128(int mx, int my, int mz);
 
-    [DllImport(NATIVE_LIBRARY_128, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport(NATIVE_LIBRARY_128, CallingConvention = CallingConvention.Cdecl, EntryPoint = "mflops")]
     public static extern double Mflops_128(int nn, double cpu, double flop);
     // ---
     private const string NATIVE_LIBRARY_256 = "himenoBMT_LARGE";
 
-    [DllImport(NATIVE_LIBRARY_256, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport(NATIVE_LIBRARY_256, CallingConvention = CallingConvention.Cdecl, EntryPoint = "initmt")]
     public static extern void InitMT_256();
 
-    [DllImport(NATIVE_LIBRARY_256, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport(NATIVE_LIBRARY_256, CallingConvention = CallingConvention.Cdecl, EntryPoint = "jacobi")]
     public static extern float Jacobi_256(int nn);
 
-    [DllImport(NATIVE_LIBRARY_256, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport(NATIVE_LIBRARY_256, CallingConvention = CallingConvention.Cdecl, EntryPoint = "fflop")]
     public static extern double Fflop_256(int mx, int my, int mz);
 
-    [DllImport(NATIVE_LIBRARY_256, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport(NATIVE_LIBRARY_256, CallingConvention = CallingConvention.Cdecl, EntryPoint = "mflops")]
     public static extern double Mflops_256(int nn, double cpu, double flop);
     // ---
     private const string NATIVE_LIBRARY_512 = "himenoBMT_ELARGE";
 
-    [DllImport(NATIVE_LIBRARY_512, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport(NATIVE_LIBRARY_512, CallingConvention = CallingConvention.Cdecl, EntryPoint = "initmt")]
     public static extern void InitMT_512();
 
-    [DllImport(NATIVE_LIBRARY_512, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport(NATIVE_LIBRARY_512, CallingConvention = CallingConvention.Cdecl, EntryPoint = "jacobi")]
     public static extern float Jacobi_512(int nn);
 
-    [DllImport(NATIVE_LIBRARY_512, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport(NATIVE_LIBRARY_512, CallingConvention = CallingConvention.Cdecl, EntryPoint = "fflop")]
     public static extern double Fflop_512(int mx, int my, int mz);
 
-    [DllImport(NATIVE_LIBRARY_512, CallingConvention = CallingConvention.Cdecl)]
+    [DllImport(NATIVE_LIBRARY_512, CallingConvention = CallingConvention.Cdecl, EntryPoint = "mflops")]
     public static extern double Mflops_512(int nn, double cpu, double flop);
     // DLLImport (END)
 
