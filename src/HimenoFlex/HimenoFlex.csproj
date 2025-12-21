@@ -38,7 +38,7 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 
-		<Authors>Lemon's Resting Area</Authors>
+		<Authors>Lemon's Resting Area, Lemon73</Authors>
 		<Copyright>LGPL ver2.0 or later</Copyright>
 		<Description>The Himeno Benchmark application of GUI version</Description>
 		<PackageIcon>Resources\Images\app_icon.png</PackageIcon>
@@ -69,6 +69,10 @@
 		<PackageReference Include="Microsoft.Maui.Essentials" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="12.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\HimenoBMT\HimenoBMT.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using HimenoBMT;
 
 namespace HimenoFlex;
 
@@ -15,122 +16,64 @@ public partial class MainPage : ContentPage
 		InitializeComponent();
 	}
 
-	private async void Button_Clicked(object? sender, EventArgs e)
+	private void Button_Clicked(object? sender, EventArgs e)
 	{
-		if (size.SelectedIndex == -1)
+		//「規模」欄に反映
+		ram.Text = size.SelectedIndex switch
 		{
-			//未選択時
-			ram.Text = "規模が選択されていません。";
+			-1 => "規模が選択されていません。", // 未選択時
+			0 => "SSmall",
+			1 => "Small",
+			2 => "Middle",
+			3 => "Large",
+			4 => "ELarge",
+			_ => "Size Error",
+		};
+
+		if (size.SelectedIndex < 0 || size.SelectedIndex > 4) return;
+
+		int benchmarkSize = size.SelectedIndex switch
+		{
+			0 => 32,
+			1 => 64,
+			2 => 128,
+			3 => 256,
+			4 => 512,
+			_ => 0,
+		};
+
+		// ベンチマーク前にデータを初期化
+		mflops1.Text = "測定中";
+		loop.Text = "測定中";
+		gosa.Text = "測定中";
+		cpu.Text = "測定中";
+		pentium.Text = "測定中";
+
+		//ベンチマーク開始
+		try
+		{
+			//ボタンクリックを無効化し、main関数が同時に複数回読み取れないようにする
+			Bench_Button.IsEnabled = false;
+			Bench_Button.Text = "ベンチマーク中";
+
+			// [TODO] 後で非同期処理にする
+			string[] benchmarkResult = HimenoBMT.HimenoBMT.Run(benchmarkSize);
+
+			mflops1.Text = benchmarkResult[0];
+			loop.Text = benchmarkResult[0];
+			gosa.Text = benchmarkResult[0];
+			cpu.Text = benchmarkResult[0];
+			pentium.Text = benchmarkResult[0];
 		}
-		else
+		catch
 		{
-			//「規模」欄に反映
-			ram.Text = size.SelectedIndex switch
-			{
-				0 => "SSmall",
-				1 => "Small",
-				2 => "Middle",
-				3 => "Large",
-				4 => "ELarge",
-				_ => "Size Error",
-			};
-
-			//ベンチマーク前にデータを削除(初期化)
-			mflops1.Text = "測定中";
-			loop.Text = "測定中";
-			gosa.Text = "測定中";
-			cpu.Text = "測定中";
-			pentium.Text = "測定中";
-
-			//ベンチマーク開始
-			try
-			{
-				int MIMAX;
-				int MJMAX;
-				int MKMAX;
-
-				switch (ram.Text)
-				{
-					case "SSmall":
-						MIMAX = 33;
-						MJMAX = 33;
-						MKMAX = 65;
-						break;
-
-					case "Small":
-						MIMAX = 65;
-						MJMAX = 65;
-						MKMAX = 129;
-						break;
-
-					case "Middle":
-						MIMAX = 129;
-						MJMAX = 129;
-						MKMAX = 257;
-						break;
-
-					case "Large":
-						MIMAX = 257;
-						MJMAX = 257;
-						MKMAX = 513;
-						break;
-
-					case "ELarge":
-						MIMAX = 513;
-						MJMAX = 513;
-						MKMAX = 1025;
-						break;
-
-					//null対策
-					default:
-						MIMAX = 0;
-						MJMAX = 0;
-						MKMAX = 0;
-						break;
-				}
-
-				[DllImport("HimenoBMTxps.dll")]
-				static extern int main(out double out1, out double out2, out int out3, out float out4, out double out5, out double out6, out double out7);
-
-				float[,,] p = new float[MIMAX, MJMAX, MKMAX];
-				float[,,,] a = new float[4, MIMAX, MJMAX, MKMAX];
-				float[,,,] b = new float[3, MIMAX, MJMAX, MKMAX];
-				float[,,,] c = new float[3, MIMAX, MJMAX, MKMAX];
-				float[,,] bnd = new float[MIMAX, MJMAX, MKMAX];
-				float[,,] wrk1 = new float[MIMAX, MJMAX, MKMAX];
-				float[,,] wrk2 = new float[MIMAX, MJMAX, MKMAX];
-				/*
-				int imax, jmax, kmax;
-				float omega;
-				*/
-
-				//ボタンクリックを無効化し、main関数が同時に複数回読み取れないようにする
-				Bench_Button.IsEnabled = false;
-				Bench_Button.Text = "ベンチマーク中";
-
-				double out_1 = 0, out_2 = 0, out_5 = 0, out_6 = 0, out_7 = 0;
-				int out_3 = 0;
-				float out_4 = 0;
-
-				await Task.Run(() => main(out out_1, out out_2, out out_3, out out_4, out out_5, out out_6, out out_7));//C言語のmain関数を実行する(非同期処理)
-
-				mflops1.Text = out_5.ToString();
-				loop.Text = out_3.ToString();
-				gosa.Text = out_4.ToString();
-				cpu.Text = out_6.ToString();
-				pentium.Text = out_7.ToString();
-
-				Bench_Button.IsEnabled = true;
-				Bench_Button.Text = "ベンチマーク開始";
-			}
-			catch
-			{
-				ram.Text = "DLL Error";
-
-				//初期状態に戻す
-				Bench_Button.IsEnabled = true;
-				Bench_Button.Text = "ベンチマーク開始";
-			}
+			ram.Text = "DLL Error";
+		}
+		finally
+		{
+			//初期状態に戻す
+			Bench_Button.IsEnabled = true;
+			Bench_Button.Text = "ベンチマーク開始";
 		}
 	}
 
@@ -206,10 +149,5 @@ public partial class MainPage : ContentPage
 
 			var fileSaverResult = await FileSaver.Default.SaveAsync($@"HimemoFlex_{DateTimeOffset.Now:yyyyMMdd_HHmmss}.txt", writer, cancellationToken);
 		}
-	}
-
-	private void Size_SelectedIndexChanged(object sender, EventArgs e)
-	{
-
 	}
 }
