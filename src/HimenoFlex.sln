@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HimenoFlex", "HimenoFlex\Hi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HimenoBMT", "HimenoBMT\HimenoBMT.csproj", "{36DCB04F-3259-46BC-8F6C-F40BA7367E34}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HimenoBMTLib", "HimenoBMTLib\HimenoBMTLib.csproj", "{9FBD7B9D-F6EA-4B1D-924E-AEB3D4B3C6CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{36DCB04F-3259-46BC-8F6C-F40BA7367E34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36DCB04F-3259-46BC-8F6C-F40BA7367E34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36DCB04F-3259-46BC-8F6C-F40BA7367E34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FBD7B9D-F6EA-4B1D-924E-AEB3D4B3C6CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FBD7B9D-F6EA-4B1D-924E-AEB3D4B3C6CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FBD7B9D-F6EA-4B1D-924E-AEB3D4B3C6CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FBD7B9D-F6EA-4B1D-924E-AEB3D4B3C6CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
