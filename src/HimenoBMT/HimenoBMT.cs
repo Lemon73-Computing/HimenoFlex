@@ -1,155 +1,28 @@
 ﻿using System.Diagnostics;
-using System.Runtime.InteropServices;
 
 namespace HimenoBMT;
 
 public static class HimenoBMT
 {
-    // DLLImport (START)
-    private const string NATIVE_LIBRARY_32 = "himenoBMT_SSMALL";
-
-    [DllImport(NATIVE_LIBRARY_32, CallingConvention = CallingConvention.Cdecl, EntryPoint = "initmt")]
-    public static extern void InitMT_32();
-
-    [DllImport(NATIVE_LIBRARY_32, CallingConvention = CallingConvention.Cdecl, EntryPoint = "jacobi")]
-    public static extern float Jacobi_32(int nn);
-
-    [DllImport(NATIVE_LIBRARY_32, CallingConvention = CallingConvention.Cdecl, EntryPoint = "fflop")]
-    public static extern double Fflop_32(int mx, int my, int mz);
-
-    [DllImport(NATIVE_LIBRARY_32, CallingConvention = CallingConvention.Cdecl, EntryPoint = "mflops")]
-    public static extern double Mflops_32(int nn, double cpu, double flop);
-    // ---
-    private const string NATIVE_LIBRARY_64 = "himenoBMT_SMALL";
-
-    [DllImport(NATIVE_LIBRARY_64, CallingConvention = CallingConvention.Cdecl, EntryPoint = "initmt")]
-    public static extern void InitMT_64();
-
-    [DllImport(NATIVE_LIBRARY_64, CallingConvention = CallingConvention.Cdecl, EntryPoint = "jacobi")]
-    public static extern float Jacobi_64(int nn);
-
-    [DllImport(NATIVE_LIBRARY_64, CallingConvention = CallingConvention.Cdecl, EntryPoint = "fflop")]
-    public static extern double Fflop_64(int mx, int my, int mz);
-
-    [DllImport(NATIVE_LIBRARY_64, CallingConvention = CallingConvention.Cdecl, EntryPoint = "mflops")]
-    public static extern double Mflops_64(int nn, double cpu, double flop);
-    // ---
-    private const string NATIVE_LIBRARY_128 = "himenoBMT_MIDDLE";
-
-    [DllImport(NATIVE_LIBRARY_128, CallingConvention = CallingConvention.Cdecl, EntryPoint = "initmt")]
-    public static extern void InitMT_128();
-
-    [DllImport(NATIVE_LIBRARY_128, CallingConvention = CallingConvention.Cdecl, EntryPoint = "jacobi")]
-    public static extern float Jacobi_128(int nn);
-
-    [DllImport(NATIVE_LIBRARY_128, CallingConvention = CallingConvention.Cdecl, EntryPoint = "fflop")]
-    public static extern double Fflop_128(int mx, int my, int mz);
-
-    [DllImport(NATIVE_LIBRARY_128, CallingConvention = CallingConvention.Cdecl, EntryPoint = "mflops")]
-    public static extern double Mflops_128(int nn, double cpu, double flop);
-    // ---
-    private const string NATIVE_LIBRARY_256 = "himenoBMT_LARGE";
-
-    [DllImport(NATIVE_LIBRARY_256, CallingConvention = CallingConvention.Cdecl, EntryPoint = "initmt")]
-    public static extern void InitMT_256();
-
-    [DllImport(NATIVE_LIBRARY_256, CallingConvention = CallingConvention.Cdecl, EntryPoint = "jacobi")]
-    public static extern float Jacobi_256(int nn);
-
-    [DllImport(NATIVE_LIBRARY_256, CallingConvention = CallingConvention.Cdecl, EntryPoint = "fflop")]
-    public static extern double Fflop_256(int mx, int my, int mz);
-
-    [DllImport(NATIVE_LIBRARY_256, CallingConvention = CallingConvention.Cdecl, EntryPoint = "mflops")]
-    public static extern double Mflops_256(int nn, double cpu, double flop);
-    // ---
-    private const string NATIVE_LIBRARY_512 = "himenoBMT_ELARGE";
-
-    [DllImport(NATIVE_LIBRARY_512, CallingConvention = CallingConvention.Cdecl, EntryPoint = "initmt")]
-    public static extern void InitMT_512();
-
-    [DllImport(NATIVE_LIBRARY_512, CallingConvention = CallingConvention.Cdecl, EntryPoint = "jacobi")]
-    public static extern float Jacobi_512(int nn);
-
-    [DllImport(NATIVE_LIBRARY_512, CallingConvention = CallingConvention.Cdecl, EntryPoint = "fflop")]
-    public static extern double Fflop_512(int mx, int my, int mz);
-
-    [DllImport(NATIVE_LIBRARY_512, CallingConvention = CallingConvention.Cdecl, EntryPoint = "mflops")]
-    public static extern double Mflops_512(int nn, double cpu, double flop);
-    // DLLImport (END)
-
-    public static void InitMT(int size)
+    internal interface IHimenoNative
     {
-        Action? action = size switch
-        {
-            32 => () => InitMT_32(),
-            64 => () => InitMT_64(),
-            128 => () => InitMT_128(),
-            256 => () => InitMT_256(),
-            512 => () => InitMT_512(),
-            _ => null
-        };
-        action?.Invoke();
+        void InitMT();
+        float Jacobi(int nn);
+        double Fflop(int mx, int my, int mz);
+        double Mflops(int nn, double cpu, double flop);
     }
-
-    public static float Jacobi(int size, int nn)
-    {
-        float number = size switch
-        {
-            32 => Jacobi_32(nn),
-            64 => Jacobi_64(nn),
-            128 => Jacobi_128(nn),
-            256 => Jacobi_256(nn),
-            512 => Jacobi_512(nn),
-            _ => 0
-        };
-        return number;
-    }
-
-    public static double Fflop(int size, int mx, int my, int mz)
-    {
-        double number = size switch
-        {
-            32 => Fflop_32(mx, my, mz),
-            64 => Fflop_64(mx, my, mz),
-            128 => Fflop_128(mx, my, mz),
-            256 => Fflop_256(mx, my, mz),
-            512 => Fflop_512(mx, my, mz),
-            _ => 0
-        };
-        return number;
-    }
-
-    public static double Mflops(int size, int nn, double cpu, double flop)
-    {
-        double number = size switch
-        {
-            32 => Mflops_32(nn, cpu, flop),
-            64 => Mflops_64(nn, cpu, flop),
-            128 => Mflops_128(nn, cpu, flop),
-            256 => Mflops_256(nn, cpu, flop),
-            512 => Mflops_512(nn, cpu, flop),
-            _ => 0
-        };
-        return number;
-    }
-
-// -------------------------------------
-// MAIN
-// -------------------------------------
 
     public static string[] Run(int size)
     {
-        switch (size)
+        IHimenoNative hinemoNative = size switch
         {
-            case 32:
-            case 64:
-            case 128:
-            case 256:
-            // case 512:
-                break;
-            default:
-                return [];
-        }
+            32 => new HimenoNative32(),
+            64 => new HimenoNative64(),
+            128 => new HimenoNative128(),
+            256 => new HimenoNative256(),
+            512 => new HimenoNative512(),
+            _ => throw new ArgumentOutOfRangeException(nameof(size), "Unsupported size"),
+        };
 
         int MIMAX = size + 1;
         int MJMAX = size + 1;
@@ -164,7 +37,7 @@ public static class HimenoBMT
         int jmax = MJMAX - 1;
         int kmax = MKMAX - 1;
 
-        InitMT(size);
+        hinemoNative.InitMT();
         Console.WriteLine($"mimax = {MIMAX} mjmax = {MJMAX} mkmax = {MKMAX}");
         Console.WriteLine($"imax = {imax} jmax = {jmax} kmax = {kmax}");
 
@@ -176,15 +49,15 @@ public static class HimenoBMT
         Stopwatch sw = new();
         sw.Start();
         //   cpu0= second();
-        gosa = Jacobi(size, nn);
+        gosa = hinemoNative.Jacobi(nn);
         sw.Stop();
         //   cpu1= second();
         //   cpu= cpu1 - cpu0;
         cpu = sw.Elapsed.TotalSeconds;
 
-        flop = Fflop(size, imax, jmax, kmax);
+        flop = hinemoNative.Fflop(imax, jmax, kmax);
 
-        Console.WriteLine($" MFLOPS: {Mflops(size, nn, cpu, flop)} time(s): {cpu} {gosa}");
+        Console.WriteLine($" MFLOPS: {hinemoNative.Mflops(nn, cpu, flop)} time(s): {cpu} {gosa}");
         Console.WriteLine();
 
         nn = (int)(target / (cpu / 3.0));
@@ -199,7 +72,7 @@ public static class HimenoBMT
          */
         sw.Restart();
         //   cpu0 = second();
-        gosa = Jacobi(size, nn);
+        gosa = hinemoNative.Jacobi(nn);
         sw.Stop();
         //   cpu1 = second();
         cpu = sw.Elapsed.TotalSeconds;
@@ -207,8 +80,8 @@ public static class HimenoBMT
 
         Console.WriteLine($" Loop executed for {nn} times");
         Console.WriteLine($" Gosa : {gosa} ");
-        Console.WriteLine($" MFLOPS measured : {Mflops(size, nn, cpu, flop)}\tcpu : {cpu}");
-        Console.WriteLine($" Score based on Pentium III 600MHz : {Mflops(size, nn, cpu, flop) / 82.84}");
+        Console.WriteLine($" MFLOPS measured : {hinemoNative.Mflops(nn, cpu, flop)}\tcpu : {cpu}");
+        Console.WriteLine($" Score based on Pentium III 600MHz : {hinemoNative.Mflops(nn, cpu, flop) / 82.84}");
 
         //   return (0);
         return [];

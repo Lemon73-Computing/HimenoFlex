@@ -1,6 +1,6 @@
 ﻿using Himeno = HimenoBMT.HimenoBMT;
 
-namespace HimenoBMTLib;
+namespace HimenoCLI;
 
 public static class Program
 {
