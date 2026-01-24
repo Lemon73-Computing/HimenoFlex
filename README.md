@@ -1,37 +1,20 @@
 # Himeno Flex
 
-## 概要
-こちらのソフトウェアは、[理化学研究所](https://www.riken.jp) - [情報システム部](https://i.riken.jp)
-より発表されている[姫野ベンチマーク](https://i.riken.jp/supercom/documents/himenobmt/)をGUIにしたソフトウェアです。<br />
-併せて[解説ページ](https://lemon73.gitlab.io/apps/himeno)もご覧ください。
+**Himeno Flex** is the calculate-based benchmark GUI application include the [Himeno Benchmark Test](https://i.riken.jp/supercom/documents/himenobmt/) (Published by the RIKEN[^riken]).
 
-## 開発状況
-進捗: **開発停止**
+[^riken]: the Institute of Physical and Chemical Research (Japan)
 
-- **完成部分**
-  - 姫野ベンチマーク読み込み部分(Windowsのみ)
-  - アイコン/起動画面
-  - UI
+## Technology
 
-- **未完成部分**
-  - 姫野ベンチマーク読み込み部分(Windows以外)
+This application has been created using [.NET MAUI](https://dot.net/maui).
 
-## 技術
-- フレームワーク
-  - .NET 7.0
-  - MAUI
+- UI
+  - .NET MAUI
+  - .NET 10 (C#)
+- Processing
+  - C-lang with C# P/Invoke
 
-- プログラム言語
-  - C#(メイン)
-  - C++/CLI(C言語で書かれた姫野ベンチマークを一部書き換えています)
-
-- デザイン言語
-  - .xaml
-
-## ライセンス
-Himeno Flex & Himeno BMT xps
-- [LGPLv2.1](LICENSE.txt)
-
+<!--
 ## 従来の姫野ベンチマークとの比較
 | 項目 | 従来 | Himeno Flex |
 | ---- | ---- | ----------- |
@@ -57,31 +40,14 @@ Himeno Flex & Himeno BMT xps
   といったように、姫野ベンチマーク(HimenoBMTxps)部分の読み込みに苦労したうえ、進展がないと見込みましたので、開発停止とさせていただきます。<br />
   これについて詳しい方はぜひご意見いただけると幸いです。<br />
 </details>
+-->
 
-#### もし作り直すなら
-以下の構成にするのが適切かもしれません。
-- フレームワーク/言語<br />
-  - 今回: .NET MAUI/C#
-  - 再作成: Qt/C++
+## License
 
-- HimenoBMTxpsの言語<br />
-  - 今回: C++/CLI
-  - 再作成: C(または本家C++)
+### HimenoBMT / HimenoBMT.NET
 
-(C言語で書かれたものを本家C++やC++/CLIにしたらベンチマーク速度の比較はできないのではないかとも今更思いましたが、そこら辺はどうなのでしょうか…)
+Licensed under the [LGPL ver2.0 or later](LICENSE.txt).
 
-**参考になりそうなリンク**<br />
-- https://learn.microsoft.com/en-us/xamarin/cross-platform/cpp/<br />
-Xamarin時代のC++の使い方。ただし、Xamarin時代とMAUIではディレクトリの構成が異なっており、あまり参考にならなかった気がします…
+### HimenoFlex
 
-## 開発する
-#### Windows
-VisualStudioで.slnファイルを開けば利用できるかと思います。<br />
-
-#### MacOS/Linux
-Android向けのビルドのみ可能だそうです。<br />
-ツールはVS Codeを推奨します。(MicrosoftのMAUI拡張機能を追加してご利用ください。)
-
-#### Linux/Solaris向けについて
-当初の予定では、Linux/Solaris用としてJavaFX版Himeno_Flexを開発する予定でした。<br />
-しかし、こちら(MAUI版)の開発に予想以上の時間がかかったので、JavaFX版を作る予定はありません。<br />
+Licensed under the [MIT License](LICENSE-MIT.txt).
